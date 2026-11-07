@@ -7,7 +7,7 @@
 <!-- LOGO -->
 ![PiDA](media/pida-logo-app.png)
 
-[About](#about) | [Key Features](#key-features) | [Demo](#demo) | [Usage](#usage) | [Related](#related) | [License](#license) | [Contribution](#contribution)
+[About](#about) | [Key Features](#key-features) | [Usage](#usage) | [Related](#related) | [License](#license) | [Contribution](#contribution)
 
 ## Status
 
@@ -31,11 +31,6 @@ PiDA provides a lightweight Android interface for actions exposed by a compatibl
 - Home-screen widgets for pinned device actions.
 - Server URL configuration in the app.
 - State refresh on demand, with cached widget data for rendering.
-
-## Demo
-
-<!-- DEMO -->
-No demo recording is included yet. Build and install the app on an Android device to try it.
 
 ## Usage
 
