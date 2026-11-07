@@ -4,7 +4,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@drawable/bg_widget_off" />
     <item
-        android:drawable="@drawable/ic_widget_generic"
+        android:drawable="@drawable/ic_widget_power"
         android:left="6dp"
         android:top="6dp"
         android:right="6dp"

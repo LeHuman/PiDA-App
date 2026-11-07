@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Neutral fallback icon for home-screen widgets: a standard power
+     on/off symbol, NOT the app logo (that is the launcher icon only).
+     Double-stroked (dark halo under a light stroke) so it stays visible
+     on any wallpaper. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- dark halo -->
+    <path
+        android:pathData="M12,5a7,7 0 1,0 0,14a7,7 0 1,0 0,-14"
+        android:strokeColor="#99000000"
+        android:strokeWidth="3.4"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M12,2L12,8"
+        android:strokeColor="#99000000"
+        android:strokeWidth="3.4"
+        android:strokeLineCap="round" />
+    <!-- light core -->
+    <path
+        android:pathData="M12,5a7,7 0 1,0 0,14a7,7 0 1,0 0,-14"
+        android:strokeColor="#F2FFFFFF"
+        android:strokeWidth="2"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M12,2L12,8"
+        android:strokeColor="#F2FFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+</vector>

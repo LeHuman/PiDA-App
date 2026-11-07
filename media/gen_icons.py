@@ -1,9 +1,12 @@
-"""Generate PiDA icon assets from media/PiDA.png.
+"""Generate PiDA launcher icon assets from media/PiDA.png.
 
 - Adaptive launcher foregrounds: cream background across the whole canvas
   (cropped naturally by the launcher mask), arch artwork cut out of the
   cream source and scaled so it fits the 66dp safe-zone circle.
-- Widget icon: 192x192 arch on transparent, centered with padding.
+
+The launcher artwork is NEVER used for home-screen widgets: their
+fallback icon is the bundled vector drawable ic_widget_power (a plain
+power on/off symbol), so the app logo cannot show up on tiles.
 """
 from PIL import Image, ImageDraw
 import pathlib
@@ -31,8 +34,8 @@ print("source:", im.size, "-> arch:", art.size, "maxd:", round(maxd, 1))
 # --- Adaptive launcher foregrounds: cream background fills the canvas
 # (the launcher mask crops it naturally), arch at first-iteration size ---
 # (farthest opaque pixel on the 66dp safe-zone circle, centered).
-densities = {"mdpi": 108, "hdpi": 162, "xhdpi": 216, "xxhdpi": 324, "xxxhdpi": 432}
 CREAM = (238, 236, 227, 255)
+densities = {"mdpi": 108, "hdpi": 162, "xhdpi": 216, "xxhdpi": 324, "xxxhdpi": 432}
 for name, canvas in densities.items():
     safe_r = canvas * 66 / 108 / 2  # safe-zone radius in px
     scale = safe_r / maxd
@@ -43,14 +46,3 @@ for name, canvas in densities.items():
     out = os.path.join(RES, f"mipmap-{name}", "ic_launcher_foreground.png")
     fg.save(out)
     print("wrote", out, fg.size)
-
-# --- Widget icon 192x192 ---
-W = 192
-pad = 0.85
-scale = min(W * pad / w, W * pad / h)
-nw, nh = max(1, round(w * scale)), max(1, round(h * scale))
-scaled = art.resize((nw, nh), Image.LANCZOS)
-wi = Image.new("RGBA", (W, W), (0, 0, 0, 0))
-wi.paste(scaled, ((W - nw) // 2, (W - nh) // 2), scaled)
-wi.save(os.path.join(RES, "drawable", "ic_widget_generic.png"))
-print("wrote widget icon", wi.size)

@@ -193,7 +193,7 @@ object PiWidgets {
             views.setImageViewBitmap(R.id.widget_icon, cachedBitmap)
             return
         }
-        views.setImageViewResource(R.id.widget_icon, R.drawable.ic_widget_generic)
+        views.setImageViewResource(R.id.widget_icon, R.drawable.ic_widget_power)
         PiWidgetIcons.loadFirst(context, candidates) { bitmap ->
             // Only re-render on success — a full-ladder failure (all 404)
             // settles on the generic icon; re-rendering on failure would
@@ -229,7 +229,7 @@ object PiWidgets {
             views.setImageViewBitmap(R.id.widget_icon, cached)
             return
         }
-        views.setImageViewResource(R.id.widget_icon, R.drawable.ic_widget_generic)
+        views.setImageViewResource(R.id.widget_icon, R.drawable.ic_widget_power)
         if (iconSourcePath == null) return
         PiWidgetIcons.load(context, iconSourcePath) { bitmap ->
             // Only re-render when a bitmap actually arrived. A failed fetch

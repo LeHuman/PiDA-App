@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:padding="4dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_widget_generic"
+        android:src="@drawable/ic_widget_power"
         android:contentDescription="@string/widget_button_cd" />
 
     <ImageView

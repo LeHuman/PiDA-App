@@ -411,7 +411,7 @@ class MainActivity : AppCompatActivity() {
      * legacy action, set path, group path); button rows use their action. */
     private fun loadWidgetThumb(view: android.widget.ImageView, entry: WidgetEntry) {
         val iconPath = entry.iconPath
-        view.setImageResource(R.drawable.ic_widget_generic)
+        view.setImageResource(R.drawable.ic_widget_power)
         view.tag = iconPath
         if (iconPath == null) return
         PiWidgetIcons.loadFirst(context = applicationContext, candidates = entry.iconCandidates) { bitmap ->

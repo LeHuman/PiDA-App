@@ -16,7 +16,7 @@
         android:background="@drawable/bg_widget_off"
         android:padding="2dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_widget_generic" />
+        android:src="@drawable/ic_widget_power" />
 
     <LinearLayout
         android:layout_width="0dp"
