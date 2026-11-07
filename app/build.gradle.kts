@@ -21,6 +21,19 @@ android {
     }
 
     buildTypes {
+        debug {
+            // CI signs with the shared debug keystore (-PdebugKeystoreFile)
+            // so pipeline APKs upgrade over locally-installed debug builds.
+            val keystore = project.findProperty("debugKeystoreFile") as String?
+            if (keystore != null && file(keystore).isFile) {
+                signingConfig = signingConfigs.create("sharedDebug") {
+                    storeFile = file(keystore)
+                    storePassword = "android"
+                    keyAlias = "androiddebugkey"
+                    keyPassword = "android"
+                }
+            }
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(

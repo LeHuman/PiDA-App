@@ -44,17 +44,20 @@ jobs:
 
       # Sign with the same debug keystore as local builds (base64 secret), so
       # CI APKs upgrade in place over locally-installed builds without the
-      # INSTALL_FAILED_UPDATE_INCOMPATIBLE signature mismatch.
+      # INSTALL_FAILED_UPDATE_INCOMPATIBLE signature mismatch. The path is
+      # passed explicitly (-PdebugKeystoreFile): runner images redirect the
+      # Android prefs dir, so AGP's default ~/.android lookup is unreliable.
       - name: Restore debug signing keystore
         run: |
-          mkdir -p "$HOME/.android"
-          printf '%s' "${{ secrets.ANDROID_DEBUG_KEYSTORE_B64 }}" | base64 -d > "$HOME/.android/debug.keystore"
+          printf '%s' "${{ secrets.ANDROID_DEBUG_KEYSTORE_B64 }}" | base64 -d > "$RUNNER_TEMP/debug.keystore"
+          sha256sum "$RUNNER_TEMP/debug.keystore"
 
       - name: Build debug APK
         run: >-
           ./gradlew assembleDebug --no-daemon
           -PversionName=${{ steps.version.outputs.version }}
           -PversionCode=${{ steps.version.outputs.code }}
+          -PdebugKeystoreFile=$RUNNER_TEMP/debug.keystore
 
       - name: Stage versioned APK
         run: cp app/build/outputs/apk/debug/app-debug.apk "PiDA-App_${{ steps.version.outputs.version }}.apk"
