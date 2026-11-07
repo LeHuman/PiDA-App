@@ -42,6 +42,13 @@ jobs:
           # 100 + run number keeps it monotonic across every build.
           echo "code=$((100 + ${{ github.run_number }} ))" >> "$GITHUB_OUTPUT"
 
+      # Sign with the same debug keystore as local builds (base64 secret), so
+      # CI APKs upgrade in place over locally-installed builds without the
+      # INSTALL_FAILED_UPDATE_INCOMPATIBLE signature mismatch.
+      - name: Restore debug signing keystore
+        run: |
+          printf '%s' "${{ secrets.ANDROID_DEBUG_KEYSTORE_B64 }}" | base64 -d > "$HOME/.android/debug.keystore"
+
       - name: Build debug APK
         run: >-
           ./gradlew assembleDebug --no-daemon
