@@ -42,7 +42,7 @@ jobs:
         run: >-
           ./gradlew assembleDebug --no-daemon
           -PversionName=${{ steps.version.outputs.version }}
-          -PversionCode=$((100 + github.run_number))
+          -PversionCode=${{ 100 + github.run_number }}
 
       - name: Stage versioned APK
         run: cp app/build/outputs/apk/debug/app-debug.apk "PiDA-App_${{ steps.version.outputs.version }}.apk"
