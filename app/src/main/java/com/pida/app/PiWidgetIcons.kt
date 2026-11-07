@@ -18,7 +18,10 @@ import java.io.File
  * LruCache.
  *
  * [peek] touches memory only — main-thread safe anywhere a widget is
- * rendered. [load] performs the possible disk/network IO on a background
+ * rendered. [peekCached] additionally consults the disk cache inline
+ * (small local PNGs), so a re-render after process death repaints the
+ * last confirmed icon in the same frame — no fallback flash, no async
+ * round-trip. [load] performs the possible network IO on a background
  * scope and calls its receiver with the bitmap (or null on 404/failure —
  * callers keep the generic fallback icon then).
  */
@@ -35,6 +38,21 @@ object PiWidgetIcons {
 
     fun peek(actionPath: String?): Bitmap? =
         actionPath?.let { mem.get(sanitize(it)) }
+
+    /**
+     * Synchronous memory-OR-disk lookup for render paths: no network, no
+     * fallback flash. Render callers consult the disk cache inline (tiny
+     * PNGs, filesDir-local), so a re-render after process death still
+     * paints the real icon in the SAME frame. The async [load] ladder
+     * only runs for icons never fetched before. Null path -> null.
+     */
+    fun peekCached(context: android.content.Context, actionPath: String?): Bitmap? {
+        val file = actionPath?.let { sanitize(it) } ?: return null
+        mem.get(file)?.let { return it }
+        val disk = readDisk(context, file) ?: return null
+        mem.put(file, disk)
+        return disk
+    }
 
     fun load(context: android.content.Context, actionPath: String, onReady: (Bitmap?) -> Unit) {
         val file = sanitize(actionPath)

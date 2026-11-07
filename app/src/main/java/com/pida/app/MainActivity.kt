@@ -408,11 +408,18 @@ class MainActivity : AppCompatActivity() {
 
     /** Icon thumbnail straight from the shared widget icon cache. Toggle
      * rows walk the same icon ladder as the widgets themselves (first
-     * legacy action, set path, group path); button rows use their action. */
+     * legacy action, set path, group path); button rows use their action.
+     * Sticky: the sync memory-or-disk read paints the last confirmed icon
+     * in this frame; the async fetch only covers icons never loaded. */
     private fun loadWidgetThumb(view: android.widget.ImageView, entry: WidgetEntry) {
         val iconPath = entry.iconPath
-        view.setImageResource(R.drawable.ic_widget_power)
         view.tag = iconPath
+        val cached = PiWidgetIcons.peekCached(this, iconPath)
+        if (cached != null) {
+            view.setImageBitmap(cached)
+            return
+        }
+        view.setImageResource(R.drawable.ic_widget_power)
         if (iconPath == null) return
         PiWidgetIcons.loadFirst(context = applicationContext, candidates = entry.iconCandidates) { bitmap ->
             // Callback arrives on the icon loader's IO thread; guard against

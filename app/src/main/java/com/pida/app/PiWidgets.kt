@@ -187,8 +187,8 @@ object PiWidgets {
     ) {
         val cachedBitmap: Bitmap? = candidates
             .filterNotNull()
-            .map { PiWidgetIcons.peek(it) }
-            .firstOrNull { it != null }
+            .mapNotNull { PiWidgetIcons.peekCached(context, it) }
+            .firstOrNull()
         if (cachedBitmap != null) {
             views.setImageViewBitmap(R.id.widget_icon, cachedBitmap)
             return
@@ -224,7 +224,7 @@ object PiWidgets {
         iconSourcePath: String?,
         appWidgetId: Int
     ) {
-        val cached = PiWidgetIcons.peek(iconSourcePath)
+        val cached = PiWidgetIcons.peekCached(context, iconSourcePath)
         if (cached != null) {
             views.setImageViewBitmap(R.id.widget_icon, cached)
             return
