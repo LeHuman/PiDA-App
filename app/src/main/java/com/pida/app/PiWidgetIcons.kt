@@ -27,7 +27,9 @@ object PiWidgetIcons {
     private const val TAG = "PiDA-W"
     private const val TARGET_PX = 96
 
-    private val mem = LruCache<String, Bitmap>(24)
+    // Holds every bound action icon across re-renders: a render that finds
+    // its bitmap resident skips the fallback flash entirely (no flicker).
+    private val mem = LruCache<String, Bitmap>(64)
     private val io = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private val inFlight = HashSet<String>()
 
