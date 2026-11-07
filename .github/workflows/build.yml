@@ -1,0 +1,55 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+    tags: ['*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  apk:
+    name: Debug APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # The ubuntu runner image ships a preinstalled Android SDK (ANDROID_HOME
+      # set, licenses pre-accepted); no SDK setup action is needed.
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Resolve version
+        id: version
+        run: |
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            # Tags look like x.x.x, with or without a leading v.
+            echo "version=${{ github.ref_name }}" | sed 's/^v//' >> "$GITHUB_OUTPUT"
+          else
+            echo "version=0.0.0+sha.${GITHUB_SHA:0:7}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build debug APK
+        run: >-
+          ./gradlew assembleDebug --no-daemon
+          -PversionName=${{ steps.version.outputs.version }}
+          -PversionCode=${{ github.run_number }}
+
+      - name: Stage versioned APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk "PiDA-App_${{ steps.version.outputs.version }}.apk"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: pida-app-apk
+          path: PiDA-App_*.apk
+          if-no-files-found: error
