@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Toggle/button widget badge, ERROR state: red circle — the last dispatch
+     for this widget failed (device unreachable, stale binding). Transient
+     until the next render push. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#FFE53935" />
+    <stroke android:width="1dp" android:color="#FF000000" />
+</shape>

@@ -1,0 +1,19 @@
+<resources>
+
+    <!--
+        PiDA — Material You theme.
+
+        Base: Material 3 DayNight (NoActionBar). On API 31+ MainActivity applies
+        the Material DynamicColors overlay, so the fallback palette below (M3
+        baseline purple, the brand seed) is only used where dynamic color is
+        unavailable (the values-night variant carries the OLED overrides).
+    -->
+    <style name="Theme.PiDA" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/pida_purple_500</item>
+        <item name="colorOnPrimary">@color/pida_white</item>
+
+        <!-- Status bar follows the surface (light-mode tint + light icons). -->
+        <item name="android:statusBarColor">?android:attr/colorBackground</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

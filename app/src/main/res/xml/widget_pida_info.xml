@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Provider metadata for the single generic PiDA widget. One receiver
+     renders any instance count; content is bound per instance at pin time.
+     updatePeriodMillis=0: state changes push updates explicitly.
+
+     NOTE on Samsung One UI attrs (widgetStyle/colorful, widgetSize, and the
+     @android:id/background transparent root from the blur-widget-demo
+     contract): tried on a real One UI 7 phone, every pin after they landed
+     was placed by the system but never committed to a cell by the launcher —
+     widget ids appeared in dumpsys with sparse option bundles (no sizes,
+     spans, or placement fields) and the tiles vanished. The same kind of pin
+     on the identical launcher BEFORE these attrs worked (visible + tappable).
+     Reverted until the contract can be bisected safely; plain-styled widgets
+     render like every other legacy third-party widget. -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="40dp"
+    android:minHeight="40dp"
+    android:targetCellWidth="1"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="0"
+    android:resizeMode="none"
+    android:widgetCategory="home_screen"
+    android:initialLayout="@layout/widget_button"
+    android:previewLayout="@layout/widget_button"
+    android:description="@string/widget_description" />

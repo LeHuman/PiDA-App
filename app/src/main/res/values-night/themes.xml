@@ -1,0 +1,26 @@
+<resources>
+    <!--
+        PiDA — dark / OLED overrides.
+
+        True black (#000000) window and base surfaces: no dark-gray wash.
+        Elevated components (cards, text fields, buttons) keep the M3 tonal
+        roles (colorSurfaceContainerLow/High etc.), so they still read as
+        surfaces against the black base.
+
+        android:windowBackground is set to a literal color on purpose: the
+        DynamicColors overlay applied on API 31+ overrides colorBackground /
+        colorSurface / the tonal containers, but never windowBackground —
+        so the base stays OLED black even when colors follow the wallpaper.
+    -->
+    <style name="Theme.PiDA" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/pida_purple_300</item>
+        <item name="colorOnPrimary">@color/pida_purple_900</item>
+
+        <item name="android:colorBackground">@color/pida_black</item>
+        <item name="android:windowBackground">@color/pida_black</item>
+        <item name="colorSurface">@color/pida_black</item>
+
+        <!-- Status bar blends into the surface; light icons are the M3 default here. -->
+        <item name="android:statusBarColor">@color/pida_black</item>
+    </style>
+</resources>

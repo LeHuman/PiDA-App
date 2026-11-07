@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stale pin: the bound group/param/action no longer exists in the schema.
+     Small text widget instead of a crash or a dead control. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_widget_off">
+
+    <TextView
+        android:id="@+id/widget_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="6dp"
+        android:textSize="10sp"
+        android:textColor="#F2FFFFFF"
+        android:text="Unavailable\nRe-add" />
+</FrameLayout>

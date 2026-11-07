@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Toggle widget badge, UNKNOWN/intermediate state: amber circle — the
+     group's toggle value is absent from the state cache (never fetched
+     since install, or the group has no reported state yet). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#FFFFC107" />
+    <stroke android:width="1dp" android:color="#FF000000" />
+</shape>

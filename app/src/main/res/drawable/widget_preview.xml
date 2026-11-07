@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Static picker preview (API 30 uses previewImage): rounded translucent
+     widget background with the generic icon centered. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_widget_off" />
+    <item
+        android:drawable="@drawable/ic_widget_generic"
+        android:left="6dp"
+        android:top="6dp"
+        android:right="6dp"
+        android:bottom="6dp" />
+</layer-list>

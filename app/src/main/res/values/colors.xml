@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        PiDA fallback palette — purple-leaning Material You seed.
+        Used when dynamic color is unavailable (API < 31); on API 31+
+        the Material DynamicColors overlay derives the full scheme
+        from the system wallpaper instead.
+    -->
+    <color name="pida_black">#FF000000</color>
+    <color name="pida_white">#FFFFFFFF</color>
+
+    <!-- M3 baseline purple: fallback colorPrimary (light) / seed family. -->
+    <color name="pida_purple_500">#FF6750A4</color>
+    <!-- Dark-mode colorPrimary fallback (M3 baseline primary-80). -->
+    <color name="pida_purple_300">#FFD0BCFF</color>
+    <!-- Dark-mode colorOnPrimary fallback (M3 baseline primary-20). -->
+    <color name="pida_purple_900">#FF381E72</color>
+</resources>

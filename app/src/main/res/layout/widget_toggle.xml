@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 1x1 toggle widget: the device's real icon full-bleed (app-icon look,
+     no background box), with a notification-style status dot top-end when
+     the bound bool is on. RemoteViews-safe views only. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/widget_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_widget_generic"
+        android:contentDescription="@string/widget_toggle_cd" />
+
+    <ImageView
+        android:id="@+id/widget_badge"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="5dp"
+        android:src="@drawable/badge_on"
+        android:visibility="gone"
+        android:contentDescription="@string/widget_toggle_cd" />
+</FrameLayout>

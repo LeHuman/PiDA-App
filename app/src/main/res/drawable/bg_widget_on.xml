@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Widget background, control on: brand purple (RemoteViews cannot
+     resolve theme attrs, so the fallback colorPrimary is hard-linked). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/pida_purple_500" />
+    <corners android:radius="20dp" />
+</shape>

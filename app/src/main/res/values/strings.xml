@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">PiDA</string>
+    <string name="controls_service_label">PiDA Controls</string>
+    <string name="brightness_label">Brightness</string>
+    <string name="temperature_label">Color Temperature</string>
+    <string name="test_connection">Test Connection</string>
+    <string name="save_settings">Save Server URL</string>
+    <string name="server_url_hint">http://your-server:port</string>
+    <string name="status_not_checked">Status: Not Checked</string>
+    <string name="open_device_controls">Configure Device Controls</string>
+
+    <!-- Home-screen widgets -->
+    <string name="widget_description">One-tap controls for your Pi devices</string>
+    <string name="widget_toggle_cd">Device toggle</string>
+    <string name="widget_button_cd">Device action</string>
+    <string name="pin_unsupported">This launcher doesn\'t support one-tap pinning. Long-press the home screen, choose Widgets, and add the PiDA widget there.</string>
+</resources>

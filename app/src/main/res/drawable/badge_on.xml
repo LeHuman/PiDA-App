@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Toggle widget badge, ON state: bright green circle with a thin dark
+     outline. Paired drawables: badge_off (hollow), badge_unknown (amber),
+     badge_error (red) — same shape/size, fill-only changes. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#FF00C853" />
+    <stroke android:width="1dp" android:color="#FF000000" />
+</shape>
