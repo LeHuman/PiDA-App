@@ -68,3 +68,22 @@ jobs:
           name: pida-app-apk
           path: PiDA-App_*.apk
           if-no-files-found: error
+
+  release:
+    name: Publish GitHub release
+    if: github.ref_type == 'tag'
+    needs: apk
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pida-app-apk
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: PiDA-App_*.apk
+          generate_release_notes: true

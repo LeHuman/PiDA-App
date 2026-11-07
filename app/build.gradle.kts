@@ -14,8 +14,10 @@ android {
         // CI passes -PversionName/-PversionCode: tag builds use the tag
         // (x.x.x, leading v optional), other builds use the commit sha;
         // versionCode is derived monotonically there (100 + run number).
-        versionCode = (project.findProperty("versionCode") as String?)?.toInt() ?: 3
-        versionName = (project.findProperty("versionName") as String?) ?: "1.1.1"
+        // Local fallbacks track the latest release so a local debug build
+        // still installs over a released one (no versionCode downgrade).
+        versionCode = (project.findProperty("versionCode") as String?)?.toInt() ?: 120
+        versionName = (project.findProperty("versionName") as String?) ?: "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
