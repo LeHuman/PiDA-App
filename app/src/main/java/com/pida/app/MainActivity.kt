@@ -204,7 +204,7 @@ class MainActivity : AppCompatActivity() {
                     prefs.serverBaseUrl.isBlank() ->
                         "Enter the server address, then tap Refresh."
                     schemaLoadFailed ->
-                        "Can't reach the Pi â€” check the server address, then tap Refresh."
+                        "Can't reach the Pi — check the server address, then tap Refresh."
                     else ->
                         "No parameterized actions in the pipeline."
                 }
@@ -353,7 +353,7 @@ class MainActivity : AppCompatActivity() {
             group.setAction?.toggleParam?.let { toggle ->
                 entries += WidgetEntry(
                     title = ControlCatalog.prettifyGroup(group.path),
-                    subtitle = "Live state widget Â· dot shows On/Off",
+                    subtitle = "Live state widget · dot shows On/Off",
                     iconPath = group.setAction?.path,
                     iconCandidates = arrayOf(
                         group.legacy.firstOrNull()?.path,
@@ -365,7 +365,7 @@ class MainActivity : AppCompatActivity() {
             for (action in group.legacy) {
                 entries += WidgetEntry(
                     title = action.title,
-                    subtitle = "One-shot run Â· no state shown",
+                    subtitle = "One-shot run · no state shown",
                     iconPath = action.path,
                     iconCandidates = arrayOf(action.path),
                     extras = PiAppWidgetProvider.bindingExtras(
@@ -394,7 +394,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /** Management row for already-placed widgets. Widget ids are owned by
-     * the launcher host â€” no public API lets the provider app delete them â€”
+     * the launcher host — no public API lets the provider app delete them —
      * so this only informs: how many instances are registered, and that
      * removal happens on the home screen itself (long-press a tile). */
     private fun updatePlacedWidgetsRow() {
@@ -438,7 +438,7 @@ class MainActivity : AppCompatActivity() {
         try {
             // Nonce + unique request code: two consecutive "Add" taps for
             // the same widget kind produce identical intent signatures,
-            // which PendingIntent would collapse into one â€” the second
+            // which PendingIntent would collapse into one — the second
             // success would silently replace the first. The nonce extra
             // differentiates the fill-in intents; the unique request code
             // keeps the PendingIntents distinct as well.
@@ -485,7 +485,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 .onFailure {
                     android.util.Log.w("PiDA", "dispatch ${spec.path} failed: ${it.message}")
-                    // Revert the row to the last known real state â€” the
+                    // Revert the row to the last known real state — the
                     // switch/slider the user moved may not match reality.
                     groupStates[group.path]?.let { applyState(group, it) }
                     Toast.makeText(this@MainActivity,

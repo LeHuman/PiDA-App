@@ -28,11 +28,11 @@ import kotlinx.coroutines.launch
  * Rendering is cache-only ([PiWidgets.render] reads StateCache, zero
  * network), so onUpdate always answers instantly and works offline. Taps
  * dispatch on the process-wide IO scope below so they survive receiver
- * teardown (a device settle can take seconds â€” don't rely on the
+ * teardown (a device settle can take seconds — don't rely on the
  * broadcast window).
  *
  * Stale pins (bound group/param/action no longer in the schema from cache)
- * render an "unavailable â€” re-add" placeholder instead of crashing.
+ * render an "unavailable — re-add" placeholder instead of crashing.
  * Nothing here may throw.
  */
 class PiAppWidgetProvider : AppWidgetProvider() {
@@ -86,13 +86,13 @@ class PiAppWidgetProvider : AppWidgetProvider() {
      * into the success PendingIntent's fill-in intent. Persist the binding that
      * MainActivity resolved at pin time (carried in this broadcast's extras), then
      * render. Kept independent of getAppWidgetOptions, which many launchers never
-     * populate with pin-time extras â€” the options read in [PiWidgets.readBinding]
+     * populate with pin-time extras — the options read in [PiWidgets.readBinding]
      * remains as a defensive fallback for launchers that DO merge them.
      */
     private fun pinConfirmed(context: Context, intent: Intent) {
         val id = idOf(intent)
         if (id == AppWidgetManager.INVALID_APPWIDGET_ID) {
-            android.util.Log.w(TAG, "pin success without an appWidgetId â€” dropped")
+            android.util.Log.w(TAG, "pin success without an appWidgetId — dropped")
             return
         }
         val carried = intent.extras
@@ -101,7 +101,7 @@ class PiAppWidgetProvider : AppWidgetProvider() {
             .mapNotNull { key -> carried?.getString(key)?.let { key to it } }
             .toMap()
         if (binding[EXTRA_KIND] == null || binding[EXTRA_GROUP] == null) {
-            android.util.Log.w(TAG, "pin success for $id without a binding â€” dropped")
+            android.util.Log.w(TAG, "pin success for $id without a binding — dropped")
             return
         }
         StateCache.getInstance(context).putWidgetBinding(id, binding)
@@ -168,7 +168,7 @@ class PiAppWidgetProvider : AppWidgetProvider() {
         }
     }
 
-    /** Legacy no-arg action: fire and log, no state verification â€” the same
+    /** Legacy no-arg action: fire and log, no state verification — the same
      * semantics the tiles render legacy buttons with. */
     private fun buttonTap(context: Context, appWidgetId: Int) {
         val binding = PiWidgets.readBinding(context, appWidgetId) ?: return
@@ -210,7 +210,7 @@ class PiAppWidgetProvider : AppWidgetProvider() {
          * Unique-per-request nonce in the success PendingIntent: two "Add"
          * taps for the same widget kind in a row must not collapse into one
          * PendingIntent (identical intent signatures get merged, so the
-         * second launch would overwrite the first â€” and the launcher fills
+         * second launch would overwrite the first — and the launcher fills
          * the appWidgetId into whichever survives).
          */
         const val EXTRA_PIN_NONCE = "pida_nonce"

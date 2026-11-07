@@ -13,13 +13,13 @@ import kotlinx.coroutines.launch
  *
  * Why: a dispatch response carries only the target group's settled state.
  * Fan-out actions (e.g. group/reset) change OTHER groups too, and some
- * devices reflect late â€” so after any action we re-read EVERY group's state
+ * devices reflect late — so after any action we re-read EVERY group's state
  * four times: ~0.5s, ~1s, ~3s and ~8s after the action. Each read is
  * written through StateCache (the widgets' render source) and re-renders
  * the pinned widgets.
  *
  * A new action while a cascade runs RESTARTS it: the schedule is measured
- * from the latest action (last action wins). Nothing is lost â€” every pass
+ * from the latest action (last action wins). Nothing is lost — every pass
  * re-reads all groups, and the cancelled schedule is instantly replaced by
  * a fresh one anchored to the new action.
  *
@@ -56,7 +56,7 @@ object PiStateSync {
                     delay(5000)
                     refreshAllGroups(app)
                 } catch (e: CancellationException) {
-                    // Superseded by a newer action â€” replaced, not failed.
+                    // Superseded by a newer action — replaced, not failed.
                 } catch (e: Exception) {
                     android.util.Log.w(TAG, "settle sync failed: ${e.message}")
                 }
