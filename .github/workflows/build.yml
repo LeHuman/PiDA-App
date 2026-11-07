@@ -47,6 +47,7 @@ jobs:
       # INSTALL_FAILED_UPDATE_INCOMPATIBLE signature mismatch.
       - name: Restore debug signing keystore
         run: |
+          mkdir -p "$HOME/.android"
           printf '%s' "${{ secrets.ANDROID_DEBUG_KEYSTORE_B64 }}" | base64 -d > "$HOME/.android/debug.keystore"
 
       - name: Build debug APK
